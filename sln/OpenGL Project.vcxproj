@@ -42,16 +42,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin\Release\</OutDir>
-    <IntDir>obj\Release\OpenGL Project\</IntDir>
+    <OutDir>..\Builds\bin\Release\</OutDir>
+    <IntDir>..\Builds\obj\Release\OpenGL Project\</IntDir>
     <TargetName>OpenGl Project</TargetName>
     <TargetExt>.exe</TargetExt>
     <LibraryPath>..\DevLib\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin\Debug\</OutDir>
-    <IntDir>obj\Debug\OpenGL Project\</IntDir>
+    <OutDir>..\Builds\bin\Debug\</OutDir>
+    <IntDir>..\Builds\obj\Debug\OpenGL Project\</IntDir>
     <TargetName>OpenGl Project</TargetName>
     <TargetExt>.exe</TargetExt>
     <LibraryPath>..\DevLib\SDL\lib;$(LibraryPath)</LibraryPath>
@@ -71,10 +71,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\DevLib\SDL\dlls;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\DevLib\SDL\dlls\**.dll\ (xcopy /Q /E /Y /I ..\DevLib\SDL\dlls\**.dll ..\Builds\bin\Release &gt; nul) ELSE (xcopy /Q /Y /I ..\DevLib\SDL\dlls\**.dll ..\Builds\bin\Release &gt; nul)</Command>
+    </PostBuildEvent>
     <BuildLog>
-      <Path>$(SolutionDir)\obj\Release\$(ProjectName).log</Path>
+      <Path>..\Builds\obj\Release\$(ProjectName).log</Path>
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -92,10 +96,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\DevLib\SDL\dlls;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\DevLib\SDL\dlls\**.dll\ (xcopy /Q /E /Y /I ..\DevLib\SDL\dlls\**.dll ..\Builds\bin\Debug &gt; nul) ELSE (xcopy /Q /Y /I ..\DevLib\SDL\dlls\**.dll ..\Builds\bin\Debug &gt; nul)</Command>
+    </PostBuildEvent>
     <BuildLog>
-      <Path>$(SolutionDir)\obj\Debug\$(ProjectName).log</Path>
+      <Path>..\Builds\obj\Debug\$(ProjectName).log</Path>
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>

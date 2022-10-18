@@ -1,9 +1,9 @@
 workspace "OpenGl Project"
 	location ".\\sln\\"
 
-	targetdir "%{wks.location}\\bin\\%{cfg.buildcfg}\\"
-	objdir "%{wks.location}\\obj\\%{cfg.buildcfg}\\%{prj.name}\\"
-	buildlog "%{wks.location}\\obj\\%{cfg.buildcfg}\\%{prj.name}.log"
+	targetdir ".\\Builds\\bin\\%{cfg.buildcfg}\\"
+	objdir ".\\Builds\\obj\\%{cfg.buildcfg}\\%{prj.name}\\"
+	buildlog ".\\Builds\\obj\\%{cfg.buildcfg}\\%{prj.name}.log"
 
 	largeaddressaware "on"
 	editandcontinue "off"
@@ -26,7 +26,14 @@ workspace "OpenGl Project"
 		".\\OpenGL\\",
 		".\\DevLib\\SDL\\include\\",
 	}
+
+	postbuildcommands{ 
+		"{COPY} ../DevLib/SDL/dlls/**.dll ../Builds//bin//%{cfg.buildcfg}//"
+	}
+
 	
+	
+
 	platforms {
 		"x86",
 	}
@@ -53,11 +60,16 @@ workspace "OpenGl Project"
 		language "c++"
 		kind "consoleapp"
 		warnings "off"
-		
+
+		libdirs {
+			".\\DevLib\\SDL\\dlls\\",
+		}
+
 		links {
 			"SDL2",
 			"SDL2main",
 			"opengl32",
+			"SDL2.dll",
 		}
 		
 		files {
