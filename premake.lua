@@ -19,12 +19,12 @@ workspace "OpenGl Project"
 	}
 
 	syslibdirs {
-		".\\DevLib\SDL\lib\\",
+		".\\DevLib\\SDL\\lib\\",
 	}
 
 	includedirs {
 		".\\OpenGL\\",
-		".\\DevLib\SDL\include\\",
+		".\\DevLib\\SDL\\include\\",
 	}
 	
 	platforms {
@@ -56,6 +56,8 @@ workspace "OpenGl Project"
 		
 		links {
 			"SDL2",
+			"SDL2main",
+			"opengl32",
 		}
 		
 		files {
@@ -68,6 +70,6 @@ workspace "OpenGl Project"
 		
 		vpaths {
    			["Headers"] = "**.h",
-   			["Sources/*"] = {"**.c", "**.cpp"},
+   			["Sources"] = "**.cpp",
    			["Docs"] = "**.txt"
 		}
